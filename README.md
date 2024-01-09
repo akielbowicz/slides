@@ -1,6 +1,6 @@
 # slides
 
-Online slides of [akielbowicz/presentations](https://github.com/akielbowicz/presentations)
+Diapositivas online de [akielbowicz/presentations](http://charlas.saxa.xyz)
 
 [Programar (casi) sin condicionales (Python Argentina Meetup - Nov 2022)](./slides/pyar_sincondicionales/slides.html)
 
