@@ -2,7 +2,7 @@
 
 Diapositivas online de [akielbowicz/presentations](http://charlas.saxa.xyz)
 
-[Qué es la Developer Experience y cómo aplicarla](./slides/eci_2023/slides.html)
+[Qué es la Developer Experience y cómo aplicarla (ECI UBA 2023)](./slides/eci_2023/slides.html)
 
 [Programar (casi) sin condicionales (Python Argentina Meetup - Nov 2022)](./slides/pyar_sincondicionales/slides.html)
 
