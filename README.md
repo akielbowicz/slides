@@ -2,6 +2,8 @@
 
 Diapositivas online de [akielbowicz/presentations](http://charlas.saxa.xyz)
 
+[Un Quarto de DDL, Sambayón y Menta Granizada, please (PyDay La Plata 2024)](./slides/pyday_la_plata_2024/slides.html)
+
 [Qué es la Developer Experience y cómo aplicarla (ECI UBA 2023)](./slides/eci_2023/slides.html)
 
 [Programar (casi) sin condicionales (Python Argentina Meetup - Nov 2022)](./slides/pyar_sincondicionales/slides.html)
