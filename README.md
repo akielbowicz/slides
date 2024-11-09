@@ -2,6 +2,8 @@
 
 Diapositivas online de [akielbowicz/presentations](http://charlas.saxa.xyz)
 
+[Interoperabilidad entre Python y Julia Lang (PyDay Catamarca 2024)](./slides/pyday_catamarca_2024/slides.html)
+
 [Intro a MS Windows para Pythonistas (PyDay Hurlingham 2024)](./slides/pyday_hurlingham_2024/slides.html)
 
 [Un Quarto de DDL, Sambayón y Menta Granizada, please (PyDay La Plata 2024)](./slides/pyday_la_plata_2024/slides.html)
