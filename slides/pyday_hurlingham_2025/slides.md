@@ -22,7 +22,7 @@ Líder Técnico en Mercado Libre
 
 ### Sasha
 
-Líder Técnico en **MELI**
+TL en **MELI**
 
 *IT Staff || Financial Planning & Analysis*
 
@@ -157,7 +157,7 @@ class MiObjeto:
 
 --
 
-Veamos una particularidad de Smalltalk para ver como conceptualizamos los objetos.
+Analicemos una particularidad de Smalltalk para ver como conceptualizamos los objetos.
 
 --
 
@@ -204,6 +204,9 @@ dir(int)
 # '__class__', ..., '__str__', '__sub__', ...]
 ``` 
 
+NOTES:
+Esto es lo que es real, esto es lo que esta detras de la sintaxis especial que tenemos en Python para trabajar con los objetos. Estamos mandando un mensaje a un objeto.
+
 ---
 
 ```python
@@ -237,6 +240,10 @@ dir(bool)
 NOTES:
 
 Lo extrano es que en Python exista una sintaxis especial para trabajar con los booleanos, pero lo tenemos tan naturalizado que no lo cuestionamos.
+
+--
+
+## A diferencia de Smalltalk, Python tiene una sentencia especial para trabajar con los booleanos
 
 --
 
@@ -340,7 +347,45 @@ que mantengamos nuestra manera de pensar de manera procedural. Y nos impide apre
 
 ### Sintaxis de "Envío de Mensajes" para True y False
 
----
+--
+
+```python
+class Verdadero:
+    @classmethod
+    def si_verdadero(cls, bloque_de_codigo):
+        bloque_de_codigo()
+
+```
+
+--
+
+<!-- .slide: data-transition="none" -->
+
+```python
+class Verdadero:
+    @classmethod
+    def si_verdadero(cls, bloque_de_codigo):
+        bloque_de_codigo()
+        return cls
+```
+
+--
+
+<!-- .slide: data-transition="none" -->
+
+```python [7-9]
+class Verdadero:
+    @classmethod
+    def si_verdadero(cls, bloque_de_codigo):
+        bloque_de_codigo()
+        return cls
+
+    @classmethod
+    def si_falso(cls, bloque_de_codigo):
+        return cls
+```
+
+--
 
 ```python
 class Verdadero:
@@ -1396,7 +1441,39 @@ for libro in libros:
 
 --
 
+NOTES:
+Acá tengo que detallar que la charla de Sandi sigue con un ejemplo largo y que 
+es ultra recomendable seguirlo
+
+--
+
+NOTES:
+Pero vamos a detallar la Abstracción 
+
+--
+
+![](./images/taza.png)
+
+--
+
+![](./images/zen-python.png)
+
+--
+
+<!-- .slide: id="filosofia-nada" -->
+
+### El Principio de la Utilidad del Vacío
+
+**Tao Te Ching:**
+> "Trabajamos con el ser, pero el no-ser es lo que usamos."
+<!-- .element: class="fragment" -->
+
+NOTES:
+La abstracción se esconde en el espacio vacío (la ausencia de if)
+
 ---
+
+--
 
 <!-- .slide: id="monoides" -->
 
@@ -1421,145 +1498,11 @@ for libro in libros:
 
 ---
 
-<!-- .slide: id="tema3-composicion" -->
-
-# TEMA 3: COMPOSICIÓN
-
-## (7 minutos)
-
----
-
-<!-- .slide: id="solucion-composicion" -->
-
-## Solución 3: Composición
-
-### Evitando la Trampa de la Herencia
-
----
-
-<!-- .slide: id="trampa-herencia" -->
-
-## La Trampa de la Herencia
-
-### "Es un" (is-a) vs. "Tiene un" (has-a)
-
-* La herencia es solo para la **especialización**
-* Usarla para reúso de código causa **Explosión Combinatoria**
-
----
-
-<!-- .slide: id="pensamiento-correcto" -->
-
-## El Pensamiento Correcto
-
-### De "¿Qué ES este objeto?" a "¿Qué ROL juega?"
-
-* Debemos aislar la variación y nombrar la abstracción
-
----
-
-<!-- .slide: id="rol-inyeccion" -->
-
-## El Rol y la Inyección
-
-### Composición con Dependency Injection (DI)
-
-**Principio:** El objeto principal depende de (usa) Roles que se le entregan en el constructor
-
----
-
-<!-- .slide: id="codigo-con-roles" -->
-
-## Código con Roles
-
-```python
-class Notificador:
-    def __init__(self, metodo_alerta):
-        self.alerta = metodo_alerta
-
-    def enviar(self):
-        self.alerta.ejecutar()
-
-# La variación vive en 'metodo_alerta'
-# (Email, SMS, Slack), no en 'Notificador'.
-```
-
----
-
-<!-- .slide: id="victoria-composicion" -->
-
-## La Victoria de la Composición
-
-### ¡Puedes combinar cualquier Rol con cualquier Entidad!
-
-* El código es más flexible
-* Más fácil de probar
-* Más mantenible
-
----
-
-<!-- .slide: id="cierre" -->
-
-# CIERRE Y CALL TO ACTION
-
-## (7 minutos)
-
----
-
-<!-- .slide: id="filosofia-nada" -->
-
-## La Filosofía de la Nada
-
-### El Principio de la Utilidad del Vacío
-
-**Tao Te Ching:**
-> "Trabajamos con el ser, pero el no-ser es lo que usamos."
-
-La abstracción se esconde en el espacio vacío (la ausencia de if)
-
----
-
-<!-- .slide: id="resumen" -->
-
-## Resumen Final
-
-### Tres Pasos para el Código Limpio
-
-1. **Encuentra la Nada:** Identifica la lógica condicional
-2. **Nómbrala:** Crea el Rol (la abstracción)
-3. **Hazla un Objeto:** Implementa el Null Object o usa la Composición
-
----
-
 <!-- .slide: id="preguntas" -->
 
 ## ¡Preguntas!
 
 **[Tu Contacto Principal / Twitter]**
-
----
-
-<!-- .slide: id="consultoria" -->
-
-## Servicios de Consultoría
-
-### ¿Tu código sufre de if y acoplamiento?
-
-* **Refactorización Estratégica:** Transformación de monolitos
-* **Diseño Orientado a Objetos:** Aplicación de patrones avanzados
-* **Auditoría de Código:** Identificación y corrección de fragilidad
-
----
-
-<!-- .slide: id="tutorias" -->
-
-## Tutorías y Mentoring
-
-### Invierte en tu futuro como desarrollador senior
-
-* Clases personalizadas de Python avanzado
-* Sesiones de TDD y Pruebas Unitarias
-* Formación en Arquitectura de Software
 
 ---
 
