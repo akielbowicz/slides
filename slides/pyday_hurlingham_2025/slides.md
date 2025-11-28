@@ -28,7 +28,8 @@ Líder Técnico en **MELI**
 
 --
 
-
+NOTES:
+Acá tengo que mencionar un par de cosas de que me interesa y que motiva esta charla
 
 --
 
@@ -40,31 +41,40 @@ Líder Técnico en **MELI**
 
 [Nothing is Something](https://www.youtube.com/watch?v=OMPfEXIlTVE) de Sandi Metz
 
+
+NOTES:
+Hay demasiadas sutilezas en esta presentacion y muchas particularidades que me llevaron bastante tiempo entenderlas y más que entenderlas,internalizarlas y ver como podia utilizarlas en mi dia a dia.
+
 ---
+
+
 
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
 
-<div style="display: flex; flex-direction: column; width: 60%; gap: 15px;">
+<div style="display: flex; flex-direction: column; width: 60%; gap: 5%;">
 
-<div style="background-color: #4CAF50; height: 80px; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
 <h3 style="margin: 0; color: #000; visibility: hidden;"><em>Buscando</em> la Abstracción</h3>
 </div>
 
-<div style="background-color: #4CAF50; height: 80px; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
 <h3 style="margin: 0; color: #000; visibility: hidden;"><em>Centrado</em> en los Mensajes</h3>
 </div>
 
-<div style="background-color: #4CAF50; height: 80px; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
-<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Reacio</em> a los Condicionales</h3>
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden"><em>Reacio</em> a los Condicionales</h3>
 </div>
 
-</div>
-
-<div style="background-color: #4CAF50; width: 60%; height: 100px; border: 2px solid #000; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
 <h3 style="margin: 0; color: #000;"><em>Infectado</em> por Smalltalk </h3>
 </div>
 
 </div>
+</div>
+
+
+NOTES: 
+Hay una particularidad en como la gente que programa en Smalltalk piensa el código orientado a objetos.
 
 ---
 
@@ -78,8 +88,76 @@ Líder Técnico en **MELI**
 [Programar (casi) sin condicionales](https://www.youtube.com/watch?v=ioeMeQNEgL8)
 
 </div>
+
+NOTES:
+
+Voy a pasar rapido por un par de ideas que explico en mas detalle en esta charla pero que nos van a ayudar a sentar las bases para lo que sigue.
+
 --
 
+Definamos unas reglas para la Programación Orientada a Objetos.
+
+1. Todo es un objeto 
+<!-- .element: class="fragment" -->
+2. Los objetos se comunican enviandose mensajes
+<!-- .element: class="fragment" -->
+
+
+NOTES:
+La programacion orientada a objetos tiene dos simples ideas o reglas:
+y con estas reglas podemos generar todo tipo de comportamientos complejos.
+
+--
+
+```python
+objetoA = MiObjeto()
+```
+
+--
+
+<!-- .slide: data-transition="none" -->
+```python
+objetoA = MiObjeto()
+objetoB = MiOtroObjeto()
+```
+--
+
+<!-- .slide: data-transition="none" -->
+```python
+objetoA = MiObjeto()
+objetoB = MiOtroObjeto()
+
+objetoA.mensaje(objetoB)
+```
+
+--
+
+<!-- .slide: data-transition="none" -->
+```python
+objetoA = MiObjeto()
+objetoB = MiOtroObjeto()
+
+objetoA.mensaje(objetoB)
+
+objetoB.otro_mensaje(1, "2", [True], None, objetoA)
+```
+
+NOTES:
+
+Para que nos sirve esto? 
+Para reducir el contexto de cada cosa que hacemos. Separar responsabilidades, etc
+
+--
+
+```python
+class MiObjeto:
+    def mensaje(self, otro_objeto):
+        otro_objeto.otro_mensaje(42)
+```
+
+--
+
+Veamos una particularidad de Smalltalk para ver como conceptualizamos los objetos.
 
 --
 
@@ -90,8 +168,24 @@ str(1)
 
 --
 
+<!-- .slide: data-transition="none" -->
+
+```python
+(1).__str__()
+# => '1'
+```
+
+--
+
 ```python
 1 + 1
+# => 2 
+```
+
+--
+
+```python
+(1).__add__(1)
 # => 2 
 ```
 
@@ -120,6 +214,13 @@ dir(int)
 --
 
 ```python
+(1).__eq__(1)
+# => True
+```
+
+--
+
+```python
 type(True)
 # => bool
 ```
@@ -132,6 +233,10 @@ dir(bool)
 #  '__ne__', '__neg__', '__new__', '__or__',
 #  ... '__ror__',... '__rxor__',... '__xor__', ... ]
 ```
+
+NOTES:
+
+Lo extrano es que en Python exista una sintaxis especial para trabajar con los booleanos, pero lo tenemos tan naturalizado que no lo cuestionamos.
 
 --
 
@@ -169,6 +274,11 @@ else:
     print("Falso")
 ```
 
+NOTES: 
+Esta es la manera en la que utilizamos esta sintaxis en Python y en muchos otros 
+lenguajes de programacion.
+Hay una expresion que se evalua y dependiendo de su valor se ejecuta un bloque de codigo u otro.
+
 --
 
 <!-- .slide: data-transition="none" -->
@@ -202,6 +312,34 @@ else:
     # Código que hace otra cosa
 ```
 
+NOTES:
+Esto es un TypeCheck, y es algo que se no se hace en OO.
+
+---
+
+### Solo quiero pasarle un **mensaje** a los objetos.
+
+NOTES:
+No quiero tener que ver el tipo de objeto que estoy manejando. Y en 
+base a eso decidir entre distintos comportamientos.
+
+---
+
+# El "if"
+
+**es un facilitador**
+<!-- .element: class="fragment" -->
+
+NOTES:
+Si venimos de lenguajes procedurales es parecería que es normal y razonable implementar largos condicionales (con if, switch, case, etc) 
+
+Y la idea principal de Sandi es que la presencia de esta palabra hace facilita
+que mantengamos nuestra manera de pensar de manera procedural. Y nos impide aprender y a aprovechar el poder de la Programación Orientada a Objetos.
+
+---
+
+### Sintaxis de "Envío de Mensajes" para True y False
+
 ---
 
 ```python
@@ -227,47 +365,139 @@ class Falso:
         bloque_de_codigo()
         return cls
 ```
+<!-- .element: class="fragment" -->
 
 --
 
 ```python
-Verdadero.si_verdadero(lambda: print("Evalua si es Verdadero"))
-         .si_falso(lambda: print("Evalua si es Falso"))
-# => Evalua si es Verdadero
+Verdadero.si_verdadero(lambda: print("Evalua este bloque"))
+# => Evalua este bloque
 ```
 
 ```python
-Falso.si_verdadero(lambda: print("Evalua si es Verdadero"))
-     .si_falso(lambda: print("Evalua si es Falso"))
-# => Evalua si es Falso
+Verdadero.si_falso(lambda: print("Evalua este bloque"))
+# =>
 ```
 <!-- .element: class="fragment" -->
 
----
+```python
+Falso.si_verdadero(lambda: print("Evalua este bloque"))
+# =>
+```
+<!-- .element: class="fragment" -->
 
-
-
----
-
-[Skip](#/no-existiese-el-if)
-<!-- .element: class="fragment"  -->
+```python
+Falso.si_falso(lambda: print("Evalua este bloque"))
+# => Evalua este bloque
+```
+<!-- .element: class="fragment" -->
 
 --
 
-```
-from forbiddenfruit import curse
-```
+```python
+if (1 == 1):
+    print("Es verdadero")
+else:
+    print("Es falso")
+# => Es verdadero
+```    
 
 ```python
+(1 == 1).si_verdadero(lambda: print("Es verdadero"))
+        .si_falso(lambda: print("Es falso"))
+# => Es verdadero
+```    
+<!-- .element: class="fragment" -->
 
-```
+--
 
+```python
+if (1 == 2):
+    print("Es verdadero")
+else:
+    print("Es falso")
+# => Es falso
+```    
 
----
+```python
+(1 == 2).si_verdadero(lambda: print("Es verdadero"))
+        .si_falso(lambda: print("Es falso"))
+# => Es falso
+```    
+<!-- .element: class="fragment" -->
+
+--
+
+### No queremos cambiar Python
+
+--
+
+<!-- .slide: data-transition:"none" -->
+
+### Quiero que cambiemos nuestra manera de pensar
+
+NOTES:
+Solo queremos cambiar nuestra manera de pensar.
+Es una invitación a pensar en como se diseñamos nuestro código
+
+--
 
 <!-- .slide: id="no-existiese-el-if" -->
 
-**¿Qué pasaría si no existiese el `"if"`?**
+**¿Qué pasaría si no existiera la sentencia `"if"`?**
+
+---
+
+
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
+
+<div style="display: flex; flex-direction: column; width: 60%; gap: 5%;">
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Buscando</em> la Abstracción</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Centrado</em> en los Mensajes</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden"><em>Reacio</em> a los Condicionales</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+<h3 style="margin: 0; color: #000;"><em>Infectado</em> por Smalltalk </h3>
+</div>
+
+</div>
+</div>
+
+--
+
+<!-- .slide: data-transition="none" -->
+
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
+
+<div style="display: flex; flex-direction: column; width: 60%; gap: 5%;">
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Buscando</em> la Abstracción</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Centrado</em> en los Mensajes</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Reacio</em> a los Condicionales</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+<h3 style="margin: 0; color: #000;"><em>Infectado</em> por Smalltalk </h3>
+</div>
+
+</div>
+</div>
 
 --
 
@@ -281,6 +511,9 @@ Biblioteca.buscar("")
 # => None
 ```
 <!-- .element: class="fragment" -->
+
+NOTES:
+Veamos un caso terrible
 
 --
 
@@ -306,7 +539,7 @@ Hay veces que **None** *"es nada"*.
 
 --
 
-```python
+```python [|2|5-6]
 libros = [ libro for id in ids 
            if (libro := Biblioteca.buscar(id)) 
          ]
@@ -400,7 +633,61 @@ else:
 </div>
 <div style="flex: 1 1 auto; padding: 3px;">
 
-```python [|2|4]
+```python [|2]
+if ( Objeto del cual conozco el tipo ):
+    # Código que hace algo
+else:
+    # Código que hace otra cosa
+```
+
+</div>
+</div>
+
+--
+
+<!-- .slide: data-transition="none" -->
+
+<div style="display: flex; justify-content: space-around; overflow: hidden;">
+<div style="flex: 1 1 auto; padding: 3px;">
+
+```python
+if libro is None:
+    return "Libro desconocido"
+else:
+    return libro.autor
+```
+
+</div>
+<div style="flex: 1 1 auto; padding: 3px;">
+
+```python [2|4]
+if ( Objeto del cual conozco el tipo ):
+    # Yo proveo el comportamiento
+else:
+    # Código que hace otra cosa
+```
+
+</div>
+</div>
+
+--
+
+<!-- .slide: data-transition="none" -->
+
+<div style="display: flex; justify-content: space-around; overflow: hidden;">
+<div style="flex: 1 1 auto; padding: 3px;">
+
+```python
+if libro is None:
+    return "Libro desconocido"
+else:
+    return libro.autor
+```
+
+</div>
+<div style="flex: 1 1 auto; padding: 3px;">
+
+```python [4]
 if ( Objeto del cual conozco el tipo ):
     # Yo proveo el comportamiento
 else:
@@ -409,6 +696,10 @@ else:
 
 </div>
 </div>
+
+NOTES:
+Esto es abosolutamente terrible y el problema central es que los condicionales 
+se multiplican.
 
 --
 
@@ -541,6 +832,58 @@ libro = Biblioteca.buscar(id)
 
 --
 
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
+
+<div style="display: flex; flex-direction: column; width: 60%; gap: 5%;">
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Buscando</em> la Abstracción</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Centrado</em> en los Mensajes</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Reacio</em> a los Condicionales</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+<h3 style="margin: 0; color: #000;"><em>Infectado</em> por Smalltalk </h3>
+</div>
+
+</div>
+</div>
+
+--
+
+<!-- .slide: data-transition="none" -->
+
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
+
+<div style="display: flex; flex-direction: column; width: 60%; gap: 5%;">
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Buscando</em> la Abstracción</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Centrado</em> en los Mensajes</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Reacio</em> a los Condicionales</h3>
+</div>
+
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+<h3 style="margin: 0; color: #000;"><em>Infectado</em> por Smalltalk </h3>
+</div>
+
+</div>
+</div>
+
+--
+
 
 <div style="display: flex; justify-content: space-around; overflow: hidden;">
 <div style="flex: 1 1 auto; padding: 10px;">
@@ -567,12 +910,16 @@ else:
 
 --
 
-```python [1-5|1|2|4]
+```python [|4]
 if libro is None:
     return "Libro desconocido"
 else:
     return libro.autor
 ```
+
+NOTES:
+No quiero saber todo el tiempo si el objeto es None o no, solo quiero 
+mandarle un mensaje
 
 --
 
@@ -589,7 +936,12 @@ class NoneType:
 ```
 <!-- .element: class="fragment" -->
 
+NOTES:
+El problema está en que unas veces recibimos el objeto Libro y otras veces NoneType que no entiende el mensaje autor.
+
 --
+
+<!-- .slide: data-transition="none" -->
 
 ```python
 class Libro:
@@ -691,6 +1043,12 @@ for libro in libros:
         print(libro.autor)
 ```
 
+NOTES:
+¿Es mejor este codigo?
+- tenemos una nueva dependencia
+- todavía tenemos un condicional
+- pero ya no somos responsables del comportamiento
+
 --
 
 <!-- .slide: data-transition="none" -->
@@ -763,12 +1121,13 @@ class Libro:
         ...
 ```
 
-```python
+```python [1]
 class LibroDesconocido:
     @property
     def autor(self):
         return "Libro desconocido"
 ```
+<!-- .element: class="fragment" -->
 
 --
 
@@ -985,153 +1344,57 @@ for libro in libros:
 ---
 
 
----
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
 
-<!-- .slide: id="problema-en-vivo" -->
+<div style="display: flex; flex-direction: column; width: 60%; gap: 5%;">
 
-## EL PROBLEMA EN VIVO
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000; visibility: hidden;"><em>Buscando</em> la Abstracción</h3>
+</div>
 
-```python
-# Un gestor busca un libro por ID
-class GestorInventario:
-    def __init__(self, repositorio):
-        self.repositorio = repositorio
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Centrado</em> en los Mensajes</h3>
+</div>
 
-    def procesar_libro(self, libro_id):
-        libro = self.repositorio.buscar(libro_id)
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Reacio</em> a los Condicionales</h3>
+</div>
 
-        # ¡Atención! Si no se encuentra, libro es None
-        return libro.obtener_portada()
-```
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+<h3 style="margin: 0; color: #000;"><em>Infectado</em> por Smalltalk </h3>
+</div>
 
----
+</div>
+</div>
 
-<!-- .slide: id="resultado" -->
+--
 
-## EL RESULTADO
+<!-- .slide: data-transition="none" -->
 
-### ¡AttributeError!
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
 
-```
-'NoneType' object has no attribute 'obtener_portada'
-```
+<div style="display: flex; flex-direction: column; width: 60%; gap: 5%;">
 
----
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Buscando</em> la Abstracción</h3>
+</div>
 
-<!-- .slide: id="parche-universal" -->
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Centrado</em> en los Mensajes</h3>
+</div>
 
-## El Parche Universal
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center;">
+<h3 style="margin: 0; color: #000;"><em>Reacio</em> a los Condicionales</h3>
+</div>
 
-### La Solución Anti-OO de Todos los Días
+<div style="background-color: #4CAF50; height: 20%; border: 2px solid #000; display: flex; align-items: center; justify-content: center; margin-top: 30px;">
+<h3 style="margin: 0; color: #000;"><em>Infectado</em> por Smalltalk </h3>
+</div>
 
-```python
-def procesar_libro(self, libro_id):
-    libro = self.repositorio.buscar(libro_id)
+</div>
+</div>
 
-    if libro is None:
-        return "placeholder_default.jpg"
-    else:
-        return libro.obtener_portada()
-```
-
-**Pregunta: ¿Hay una mejor manera de diseñar esto?**
-
----
-
-<!-- .slide: id="tesis-sandi-metz" -->
-
-## La Tesis de Sandi Metz
-
-### La Programación Orientada a Objetos Perfecta NO USA if.
-
----
-
-<!-- .slide: id="quien-soy" -->
-
-## Quién Soy
-
-**[Tu Nombre]**
-
-* [Tu Título y Especialidad]
-* [Punto clave de tu experiencia]
-* [Punto clave de tu experiencia]
-
----
-
-<!-- .slide: id="tema1-null-object" -->
-
-# TEMA 1: NULL OBJECT
-
-## (6 minutos)
-
----
-
-<!-- .slide: id="gran-idea" -->
-
-## La Gran Idea
-
-### "Nada es Siempre Algo"
-
-* **Costo del if:** Acoplamiento, Fragilidad, Pruebas complejas
-* El buen diseño elimina la necesidad de preguntar
-
----
-
-<!-- .slide: id="solucion-null-object" -->
-
-## Solución 1: Null Object Pattern
-
-### La "Nada Activa"
-
-* **LibroNoEncontrado** (Objeto Nulo)
-* Conformidad de Interfaz
-
----
-
-<!-- .slide: id="implementacion" -->
-
-## Implementación
-
-```python
-# El objeto que representa la AUSENCIA de un Libro
-class LibroNoEncontrado:
-    def obtener_portada(self):
-        # Implementación de comportamiento neutro
-        return "placeholder_default.jpg"
-
-    def registrar_prestamo(self):
-        pass # No tiene side effects
-```
-
----
-
-<!-- .slide: id="codigo-cliente-limpio" -->
-
-## Código Cliente Limpio
-
-### Reemplazamos la Condición por Polimorfismo
-
-* El GestorInventario confía en el mensaje
-* El cliente no tiene que saber si es `Libro` o `LibroNoEncontrado`
-
----
-
-<!-- .slide: id="aislamiento" -->
-
-## Aislamiento
-
-### ¿Dónde va el if?
-
-* La condición solo vive en el **Repositorio** o en el código de inicialización
-* El Repositorio devuelve siempre un objeto funcional
-
----
-
-<!-- .slide: id="tema2-null-object-data" -->
-
-# TEMA 2: NULL OBJECT EN DATA
-
-## (2 minutos)
+--
 
 ---
 
