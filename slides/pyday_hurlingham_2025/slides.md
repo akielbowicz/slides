@@ -22,11 +22,15 @@ Líder Técnico en Mercado Libre
 
 ### Sasha
 
-TL en **MELI**
+**TL** en **MELI**
 
 *IT Staff || Financial Planning & Analysis*
 
 --
+
+- Estudié Física en la UBA
+- Trabaje como Desarrollador de Software en JP Morgan
+- Trabaje como Lead Quant Developer en **Qontigo/Simcorp**
 
 NOTES:
 Acá tengo que mencionar un par de cosas de que me interesa y que motiva esta charla
@@ -76,7 +80,7 @@ Hay demasiadas sutilezas en esta presentacion y muchas particularidades que me l
 NOTES: 
 Hay una particularidad en como la gente que programa en Smalltalk piensa el código orientado a objetos.
 
----
+--
 
 <!-- .slide: id="poo" -->
 
@@ -155,7 +159,7 @@ class MiObjeto:
         otro_objeto.otro_mensaje(42)
 ```
 
---
+---
 
 Analicemos una particularidad de Smalltalk para ver como conceptualizamos los objetos.
 
@@ -241,7 +245,7 @@ NOTES:
 
 Lo extrano es que en Python exista una sintaxis especial para trabajar con los booleanos, pero lo tenemos tan naturalizado que no lo cuestionamos.
 
---
+---
 
 ## A diferencia de Smalltalk, Python tiene una sentencia especial para trabajar con los booleanos
 
@@ -322,7 +326,7 @@ else:
 NOTES:
 Esto es un TypeCheck, y es algo que se no se hace en OO.
 
----
+--
 
 ### Solo quiero pasarle un **mensaje** a los objetos.
 
@@ -330,7 +334,7 @@ NOTES:
 No quiero tener que ver el tipo de objeto que estoy manejando. Y en 
 base a eso decidir entre distintos comportamientos.
 
----
+--
 
 # El "if"
 
@@ -379,7 +383,6 @@ class Verdadero:
     def si_verdadero(cls, bloque_de_codigo):
         bloque_de_codigo()
         return cls
-
     @classmethod
     def si_falso(cls, bloque_de_codigo):
         return cls
@@ -485,7 +488,7 @@ NOTES:
 Solo queremos cambiar nuestra manera de pensar.
 Es una invitación a pensar en como se diseñamos nuestro código
 
---
+---
 
 <!-- .slide: id="no-existiese-el-if" -->
 
@@ -563,20 +566,40 @@ Veamos un caso terrible
 --
 
 ```python [1|1-3|3-6|5]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ Biblioteca.buscar(id) for id in ids ]
 # => [<__main__.Libro object at 0x7f0f4bf35940> id:Los Sorias,
 # None,
-# <__main__.Libro object at 0x7f0f48e10190> id:Ocio]
+# <__main__.Libro object at 0x7f0f48e10190> id:El Fiord]
 ```
 
-```python [|3]
+```python
 for libro in libros:
     print(libro.autor)
-# => AttributeError: 'NoneType' object has no attribute 'autor'
+
 ```
 <!-- .element: class="fragment" -->
+
+--
+
+<!-- .slide: data-transition="none" -->
+
+```python
+ids = ["Los Sorias", "", "El Fiord"]
+
+libros = [ Biblioteca.buscar(id) for id in ids ]
+# => [<__main__.Libro object at 0x7f0f4bf35940> id:Los Sorias,
+# None,
+# <__main__.Libro object at 0x7f0f48e10190> id:El Fiord]
+```
+
+```python [|4]
+for libro in libros:
+    print(libro.autor)
+# => Alberto Laiseca
+# AttributeError: 'NoneType' object has no attribute 'autor'
+```
 
 --
 
@@ -590,7 +613,7 @@ libros = [ libro for id in ids
          ]
 # => [
 # <__main__.Libro object at 0x7f0f4bf35940> id:Los Sorias,
-# <__main__.Libro object at 0x7f0f48e10190> id:Ocio
+# <__main__.Libro object at 0x7f0f48e10190> id:El Fiord
 #    ]
 ```
 
@@ -606,12 +629,12 @@ entonces *"es algo"*.
 ¿Y qué pasa si quiero manejar ese caso?
 
 ```python [9]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ Biblioteca.buscar(id) for id in ids ]
 # => [<__main__.Libro object at 0x7f0f4bf35940> id:Los Sorias,
 # None,
-# <__main__.Libro object at 0x7f0f48e10190> id:Ocio]
+# <__main__.Libro object at 0x7f0f48e10190> id:El Fiord]
 
 for libro in libros:
     print("Libro desconocido" if libro is None else libro.autor)
@@ -620,13 +643,15 @@ for libro in libros:
 
 --
 
+<!-- .slide: data-transition="none" -->
+
 ```python [9]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ Biblioteca.buscar(id) for id in ids ]
 # => [<__main__.Libro object at 0x7f0f4bf35940> id:Los Sorias,
 # None,
-# <__main__.Libro object at 0x7f0f48e10190> id:Ocio]
+# <__main__.Libro object at 0x7f0f48e10190> id:El Fiord]
 
 for libro in libros:
     print(libro and libro.autor)
@@ -1024,7 +1049,7 @@ class LibroDesconocido:
 --
 
 ```python [4]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ 
     Biblioteca.buscar(id)
@@ -1032,7 +1057,7 @@ libros = [
 # => [
 # <__main__.Libro object at 0x7f0f49464ec0> id:Los Sorias,
 # None,
-# <__main__.Libro object at 0x7f0f48e11a90> id:Ocio
+# <__main__.Libro object at 0x7f0f48e11a90> id:El Fiord
 # ]
 
 for libro in libros:
@@ -1047,7 +1072,7 @@ for libro in libros:
 <!-- .slide: data-transition="none" -->
 
 ```python [4|4,8]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ 
     Biblioteca.buscar(id) or LibroDesconocido() 
@@ -1055,7 +1080,7 @@ libros = [
 # => [
 # <__main__.Libro object at 0x7f0f49464ec0> id:Los Sorias,
 # None,
-# <__main__.Libro object at 0x7f0f48e11a90> id:Ocio
+# <__main__.Libro object at 0x7f0f48e11a90> id:El Fiord
 # ]
 
 for libro in libros:
@@ -1070,7 +1095,7 @@ for libro in libros:
 <!-- .slide: data-transition="none" -->
 
 ```python [8|4,13|13-16|13-15]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ 
     Biblioteca.buscar(id) or LibroDesconocido() 
@@ -1078,7 +1103,7 @@ libros = [
 # => [
 # <__main__.Libro object at 0x7f0f49464ec0> id:Los Sorias,
 # <__main__.LibroDesconocido at 0x7f0f49464c20>,
-# <__main__.Libro object at 0x7f0f48e11a90> id:Ocio
+# <__main__.Libro object at 0x7f0f48e11a90> id:El Fiord
 # ]
 
 for libro in libros:
@@ -1099,7 +1124,7 @@ NOTES:
 <!-- .slide: data-transition="none" -->
 
 ```python [12-13]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ 
     Biblioteca.buscar(id) or LibroDesconocido() 
@@ -1107,7 +1132,7 @@ libros = [
 # => [
 # <__main__.Libro object at 0x7f0f49464ec0> id:Los Sorias,
 # <__main__.LibroDesconocido at 0x7f0f49464c20>,
-# <__main__.Libro object at 0x7f0f48e11a90> id:Ocio
+# <__main__.Libro object at 0x7f0f48e11a90> id:El Fiord
 # ]
 
 for libro in libros:
@@ -1119,7 +1144,7 @@ for libro in libros:
 <!-- .slide: data-transition="none" -->
 
 ```python [12-13]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ 
     Biblioteca.buscar(id) or LibroDesconocido() 
@@ -1127,7 +1152,7 @@ libros = [
 # => [
 # <__main__.Libro object at 0x7f0f49464ec0> id:Los Sorias,
 # <__main__.LibroDesconocido at 0x7f0f49464c20>,
-# <__main__.Libro object at 0x7f0f48e11a90> id:Ocio
+# <__main__.Libro object at 0x7f0f48e11a90> id:El Fiord
 # ]
 
 for libro in libros:
@@ -1137,7 +1162,7 @@ for libro in libros:
 --
 
 ```python [12-17]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ 
     Biblioteca.buscar(id) or LibroDesconocido() 
@@ -1145,7 +1170,7 @@ libros = [
 # => [
 # <__main__.Libro object at 0x7f0f49464ec0> id:Los Sorias,
 # <__main__.LibroDesconocido at 0x7f0f49464c20>,
-# <__main__.Libro object at 0x7f0f48e11a90> id:Ocio
+# <__main__.Libro object at 0x7f0f48e11a90> id:El Fiord
 # ]
 
 for libro in libros:
@@ -1153,7 +1178,7 @@ for libro in libros:
 # => 
 # Alberto Laiseca
 # Libro desconocido
-# Fabián Casas
+# Osvaldo Lamborghini
 ```
 
 
@@ -1189,7 +1214,7 @@ class LibroDesconocido:
 
 
 ```python [4]
-ids = ["Los Sorias", "", "Ocio"]
+ids = ["Los Sorias", "", "El Fiord"]
 
 libros = [ 
     Biblioteca.buscar(id) or LibroDesconocido() 
@@ -1200,7 +1225,7 @@ for libro in libros:
 # => 
 # Alberto Laiseca
 # Libro desconocido
-# Fabián Casas
+# Osvaldo Lamborghini
 ```
 
 --
@@ -1371,7 +1396,7 @@ libros = [
 # => [
 # <__main__.Libro object at 0x7f0f49464ec0> id:Los Sorias,
 # <__main__.LibroDesconocido at 0x7f0f49464c20>,
-# <__main__.Libro object at 0x7f0f48e11a90> id:Ocio
+# <__main__.Libro object at 0x7f0f48e11a90> id:El Fiord
 # ]
 ```
 
@@ -1381,7 +1406,7 @@ for libro in libros:
 # => 
 # Alberto Laiseca
 # Libro desconocido
-# Fabián Casas
+# Osvaldo Lamborghini
 ```
 <!-- .element: class="fragment" -->
 
@@ -1441,22 +1466,22 @@ for libro in libros:
 
 --
 
+## Hasta acá seguimos la charla de Sandi Metz
+
 NOTES:
 Acá tengo que detallar que la charla de Sandi sigue con un ejemplo largo y que 
 es ultra recomendable seguirlo
 
 --
 
+## Pensemos el Vacio
+
 NOTES:
 Pero vamos a detallar la Abstracción 
 
 --
 
-![](./images/taza.png)
-
---
-
-![](./images/zen-python.png)
+<img src="./images/taza.png" width="70%">
 
 --
 
@@ -1468,50 +1493,207 @@ Pero vamos a detallar la Abstracción
 > "Trabajamos con el ser, pero el no-ser es lo que usamos."
 <!-- .element: class="fragment" -->
 
-NOTES:
-La abstracción se esconde en el espacio vacío (la ausencia de if)
+--
+
+<img src="./images/zen-python.png" width="70%">
 
 ---
+
+Lo que tenemos que entender es la función del vacío.
 
 --
 
 <!-- .slide: id="monoides" -->
 
-## Paralelo Funcional: Monoides
+- 10 + 0 = 10
+<!-- .element: class="fragment" -->
 
-### El Objeto Nulo en Data Processing
+- 4 * 1 = 4
+<!-- .element: class="fragment" -->
 
-* En el procesamiento de datos, la **Identidad Monoidal** es el "Null Object"
-* Ejemplo Clásico: Si queremos appendear resultados de múltiples procesos
+- `"Hola" + "" = "Hola"`
+<!-- .element: class="fragment" -->
+
+- `[1, 2] + [] = [1, 2]`
+<!-- .element: class="fragment" -->
+
+- `pd.concat([df, pd.DataFrame()]) = df`
+<!-- .element: class="fragment" -->
+
+- `set.union(A, set()) = A`
+<!-- .element: class="fragment" -->
+
+- $\mathbb{M} * \mathbb{I} = \mathbb{M}$
+<!-- .element: class="fragment" -->
+
+<div>
+
+- `lambda x: x`
+
+- `def identidad(x): return x`
+</div>
+<!-- .element: class="fragment" -->
+
+--
+
+**Monoide:** Una estructura algebraica con una operación binaria y un elemento identidad
+
+--
+
+<!-- .slide: id="paralelizacion" -->
+
+## Los Monoides y la Paralelización
+
+NOTES:
+La abstracción de monoide no es solo elegancia matemática, es la clave para algoritmos paralelizables.
+
+--
+
+### ¿Por qué importan los monoides?
+
+Las operaciones asociativas se pueden **dividir**
+<!-- .element: class="fragment" -->
+
+--
+
+```python
+# Operación asociativa: (a + b) + c = a + (b + c)
+total = sum([1, 2, 3, 4, 5, 6, 7, 8])
+```
+
+--
+
+<!-- .slide: data-transition="none" -->
+
+```python
+# Podemos dividir el trabajo
+chunk1 = sum([1, 2, 3, 4])  # = 10
+chunk2 = sum([5, 6, 7, 8])  # = 26
+total = chunk1 + chunk2     # = 36
+```
+
+--
+
+### Propiedades Clave para Paralelización
+
+1. **Asociatividad**: `(a ⊕ b) ⊕ c = a ⊕ (b ⊕ c)`
+<!-- .element: class="fragment" -->
+
+2. **Elemento Identidad**: `a ⊕ e = e ⊕ a = a`
+<!-- .element: class="fragment" -->
+
+3. **Sin efectos secundarios**: Funciones puras
+<!-- .element: class="fragment" -->
+
+--
+
+### De los Objetos Nulos a la Alta Performance
+
+- Los patrones que eliminan condicionales...
+<!-- .element: class="fragment" -->
+
+- ...facilitan el razonamiento sobre el código...
+<!-- .element: class="fragment" -->
+
+- ...y permiten optimizaciones automáticas
+<!-- .element: class="fragment" -->
+
+NOTES:
+El código bien abstraído es más fácil de paralelizar y optimizar.
 
 ---
 
-<!-- .slide: id="lista-vacia" -->
+<!-- .slide: id="servicios" -->
 
-## La Lista Vacía y el DataFrame Vacío
+## De la Teoría a la Práctica
 
-* Si un proceso no encuentra datos ("Nada"), debe devolver la **Identidad**
-* **Identidad:** Una lista vacía `[]` o un DataFrame vacío `pd.DataFrame()`
-* **Beneficio:** Permite que el paso siguiente (concatenación) se ejecute sin if y sin errores
+Llevamos estos principios a tu código de producción.
+<!-- .element: class="fragment" -->
 
-> **Nota:** Crear un DataFrame vacío puede ser más costoso que un simple if en loops muy rápidos. Es una compensación entre legibilidad/robustez y velocidad.
+--
 
----
+<img src="./images/logo.svg" class="light-theme-logo" width="50%" style="display: block; margin: 0 auto;">
+<img src="./images/logo-invertido.svg" class="dark-theme-logo" width="50%" style="display: none; margin: 0 auto;">
 
-<!-- .slide: id="preguntas" -->
+### [Phorma Scientific](https://phorma.sh/es)
 
-## ¡Preguntas!
+**Rigor. Rendimiento. Arquitectura.**
 
-**[Tu Contacto Principal / Twitter]**
+--
+
+### [Phorma Scientific](https://phorma.sh/es)
+
+**Rigor. Rendimiento. Arquitectura.**
+
+<div style="font-size: 0.9em; margin-top: 2rem;">
+
+— Auditoría de Sistema y Arquitectura
+
+— Ingeniería de Software de Investigación (RSE)
+
+— Machine Learning Científico (SciML)
+
+— Síntesis de Rendimiento
+
+</div>
+
+
+--
+
+### Transformamos prototipos en sistemas de producción
+
+- Refactorización guiada por principios
+- Optimización de rendimiento (benchmarkeado)
+- Arquitecturas desacopladas y mantenibles
+- Stack: `Python` `Julia` `C#`
+
+--
+
+### Capacitación Técnica
+
+**Para laboratorios de investigación y equipos de I+D**
+
+<div style="font-size: 0.9em; margin-top: 2rem;">
+
+- Fundamentos de Computación Numérica
+- Rigor de Producción (TDD, CI/CD)
+- Machine Learning Científico
+- Programación con Julia para Software de Alto Rendimiento
+- Diseño de Sistemas Arquitectónicos
+
+</div>
+
+<p style="margin-top: 2rem;">
+<a href="https://phorma.sh/es/trainees" style="border-bottom: 2px solid;">phorma.sh/es/trainees</a>
+</p>
+
+--
+
+> Y una técnica que te sirve para escribir te tiene que servir también para vivir. O sea que si yo lo único que te voy a dar es tecniquería (sic), no sirve para nada. 
+— **Fabián Casas**
+
+--
+
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+
+<h3>¿Listo para eliminar los condicionales de tu código?</h3>
+
+<div style="margin-top: 2rem; font-size: 1.2em;">
+
+**[info@phorma.sh](mailto:info@phorma.sh)**
+
+**[sasha@phorma.sh](mailto:sasha@phorma.sh)**
+
+</div>
+
+<p style="margin-top: 2rem; font-family: monospace; color: #666;">
+Estructura sobre el Caos
+</p>
+
+</div>
 
 ---
 
 <!-- .slide: id="gracias" -->
 
 ## Gracias
-
-### Contacto y Redes
-
-* **Email:** [Tu Email]
-* **LinkedIn:** [Tu LinkedIn]
-* ¡Hablemos de código!
