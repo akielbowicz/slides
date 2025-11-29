@@ -2,6 +2,8 @@
 
 Diapositivas online de [akielbowicz/presentations](http://charlas.saxa.xyz)
 
+[Nadie nada nunca (PyDay Hurlingham 2025)](./slides/pyday_hurlingham_2025/slides.html)
+
 [Interoperabilidad entre Python y Julia Lang (PyDay Catamarca 2024)](./slides/pyday_catamarca_2024/slides.html)
 
 [Intro a MS Windows para Pythonistas (PyDay Hurlingham 2024)](./slides/pyday_hurlingham_2024/slides.html)
