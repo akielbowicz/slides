@@ -2,6 +2,8 @@
 
 Diapositivas online de [akielbowicz/presentations](http://charlas.saxa.xyz)
 
+[IA en tu profesión — E1 Fundamentos (Biblioteca Popular de Suipacha 2026)](./slides/ia_en_tu_profesion_e1_2026/index.html)
+
 [Nadie nada nunca (PyDay Hurlingham 2025)](./slides/pyday_hurlingham_2025/slides.html)
 
 [Interoperabilidad entre Python y Julia Lang (PyDay Catamarca 2024)](./slides/pyday_catamarca_2024/slides.html)
