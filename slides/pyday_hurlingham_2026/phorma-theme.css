@@ -1,0 +1,687 @@
+/*
+ * Reveal.js Theme — "After Chabón" (Sumo)
+ * Paleta de 3 colores medida de la tapa del disco:
+ *   negro  #1A1917   blanco #FBFAFA   rojo #C83534
+ * Fondo claro/oscuro conmutable (toggle / ?theme=light|dark).
+ * El rojo es el MISMO en ambos temas (como la tapa: rojo sobre negro).
+ */
+
+/* ==========================================
+   THEME VARIABLES
+   ========================================== */
+
+:root {
+  /* Paleta Sumo (medida de la tapa de After Chabón) */
+  --sumo-black: #1A1917;
+  --sumo-white: #FBFAFA;
+  --sumo-red: #C83534;
+
+  /* Light Theme (fondo blanco, default) */
+  --r-background-color: var(--sumo-white);
+  --r-main-color: var(--sumo-black);
+  --r-heading-color: var(--sumo-black);
+  --r-link-color: var(--sumo-red);
+  --r-link-color-hover: var(--sumo-red);
+  --r-selection-background-color: var(--sumo-red);
+  --r-selection-color: var(--sumo-white);
+
+  /* Neutrales */
+  --color-grey: #E5E5E5;
+  --color-grey-dark: #333333;
+  --color-muted: #666666;
+  --color-border: var(--sumo-black);
+
+  /* Typography */
+  --r-main-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --r-heading-font: 'Poiret One', 'Comfortaa', 'Quicksand', var(--r-code-font);
+  --r-code-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  --r-main-font-size: 38px;
+  --r-heading-letter-spacing: 0.3em;
+  --r-heading-text-transform: uppercase;
+  --r-heading-font-weight: 400;
+
+  /* Spacing */
+  --r-block-margin: 20px;
+  --r-heading-margin: 0 0 20px 0;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+/* Dark Theme (fondo negro, como la tapa) */
+[data-theme="dark"] {
+  --r-background-color: var(--sumo-black);
+  --r-main-color: var(--sumo-white);
+  --r-heading-color: var(--sumo-white);
+  --r-link-color: var(--sumo-red);
+  --r-link-color-hover: var(--sumo-red);
+  --r-selection-background-color: var(--sumo-red);
+  --r-selection-color: var(--sumo-white);
+
+  --color-grey: #262523;
+  --color-grey-dark: #cccccc;
+  --color-muted: #999999;
+  --color-border: var(--sumo-white);
+}
+
+/* ==========================================
+   BASE STYLES
+   ========================================== */
+
+.reveal {
+  font-family: var(--r-main-font);
+  font-size: var(--r-main-font-size);
+  font-weight: 400;
+  color: var(--r-main-color);
+}
+
+.reveal-viewport {
+  background: var(--r-background-color);
+  background-color: var(--r-background-color);
+}
+
+/* ==========================================
+   TYPOGRAPHY
+   ========================================== */
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  margin: var(--r-heading-margin);
+  color: var(--r-heading-color);
+  font-family: var(--r-heading-font);
+  font-weight: var(--r-heading-font-weight);
+  letter-spacing: var(--r-heading-letter-spacing);
+  line-height: 1.2;
+  text-transform: var(--r-heading-text-transform);
+  word-wrap: break-word;
+}
+
+.reveal h1 {
+  font-size: 2.5em;
+}
+
+.reveal h2 {
+  font-size: 1.8em;
+}
+
+.reveal h3 {
+  font-size: 1.4em;
+}
+
+.reveal h4 {
+  font-size: 1.2em;
+}
+
+.reveal p {
+  margin: var(--r-block-margin) 0;
+  line-height: 1.6;
+}
+
+.reveal strong,
+.reveal b {
+  font-weight: 700;
+}
+
+.reveal em {
+  font-style: italic;
+}
+
+/* ==========================================
+   LINKS
+   ========================================== */
+
+.reveal a {
+  color: var(--sumo-red);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+  border-bottom: 1px solid var(--sumo-red);
+}
+
+.reveal a:hover {
+  color: var(--r-link-color-hover);
+  opacity: 0.6;
+}
+
+/* ==========================================
+   CODE BLOCKS
+   ========================================== */
+
+/* Code blocks: tarjeta blanca, letra negra, dentro del marco */
+.reveal pre,
+.reveal pre.code-wrapper,
+.reveal div.code-wrapper pre,
+.reveal section > pre,
+.reveal .fragment > pre,
+.reveal .slides section pre {
+  display: block;
+  position: relative;
+  width: 82%;
+  max-width: 82%;
+  margin: var(--r-block-margin) auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: var(--r-code-font);
+  line-height: 1.4;
+  word-wrap: break-word;
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Inline code styling */
+.reveal code {
+  font-family: var(--r-code-font);
+  font-size: 0.9em;
+  background: var(--sumo-white);
+  color: var(--sumo-black);
+  padding: 0.125rem 0.375rem;
+  border-radius: 2px;
+  border: 1px solid rgba(26, 25, 23, .35);
+}
+
+/* Code blocks - tarjeta clara en AMBOS temas (legibilidad en proyector):
+   fondo blanco, letra negra; en modo claro el borde la separa de la slide */
+.reveal pre code,
+.reveal pre > code,
+.reveal section pre code,
+.reveal .fragment pre code,
+.reveal .slides section pre code {
+  display: block;
+  padding: 1em !important;
+  overflow: auto;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: 600px;
+  word-wrap: normal;
+  background: var(--sumo-white) !important;
+  color: var(--sumo-black) !important;
+  border-radius: 0;
+  border: 2px solid var(--sumo-black) !important;
+}
+
+/* Tokens hljs: monocromo negro con acento sumo-rojo — independientes del
+   stylesheet activo (github-dark deja colores claros ilegibles sobre blanco) */
+.reveal pre code span[class^="hljs-"] {
+  color: var(--sumo-black) !important;
+  background: transparent !important;
+}
+.reveal pre code span.hljs-keyword,
+.reveal pre code span.hljs-built_in,
+.reveal pre code span.hljs-title,
+.reveal pre code span.hljs-attr,
+.reveal pre code span.hljs-symbol {
+  color: var(--sumo-red) !important;
+}
+.reveal pre code span.hljs-comment,
+.reveal pre code span.hljs-quote {
+  color: #6b6b66 !important;
+  font-style: italic;
+}
+  box-shadow: none !important;
+}
+
+/* Remove borders from ANY wrapper divs or containers */
+.reveal .code-wrapper,
+.reveal div.code-wrapper,
+.reveal pre[data-line-numbers],
+.reveal .hljs,
+.reveal .hljs-ln,
+.reveal .hljs-ln-line,
+.reveal table.hljs-ln {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Remove borders from line number elements */
+.reveal .hljs-ln-numbers,
+.reveal .hljs-ln-code,
+.reveal .hljs-ln-n,
+.reveal td.hljs-ln-numbers,
+.reveal td.hljs-ln-code {
+  border: none !important;
+  background: transparent !important;
+}
+
+/* ==========================================
+   LISTS
+   ========================================== */
+
+.reveal ul,
+.reveal ol {
+  display: block;
+  text-align: left;
+  margin: 0 0 0 1em;
+  font-size: 0.9em;
+}
+
+.reveal ul {
+  list-style-type: none;
+}
+
+.reveal ul li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.reveal ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  font-family: var(--r-code-font);
+  color: var(--sumo-red);
+}
+
+.reveal ol {
+  list-style-type: decimal;
+}
+
+/* ==========================================
+   QUOTES
+   ========================================== */
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: var(--r-block-margin) auto;
+  padding: 1em;
+  font-style: italic;
+  background: var(--color-grey);
+  border-left: 4px solid var(--sumo-red);
+  box-shadow: none;
+}
+
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+  display: inline-block;
+}
+
+/* ==========================================
+   IMAGES
+   ========================================== */
+
+.reveal section img {
+  margin: 15px 0px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* ==========================================
+   TABLES
+   ========================================== */
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 2px solid var(--color-border);
+}
+
+.reveal table th {
+  font-weight: 700;
+  font-family: var(--r-code-font);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  background: var(--color-grey);
+}
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.5em 1em;
+  border: 1px solid var(--color-border);
+}
+
+.reveal table tr:nth-child(even) {
+  background-color: var(--color-grey);
+}
+
+/* ==========================================
+   MARCO SUMO — rojo en todas las diapositivas
+   Réplica del marco de la tapa de After Chabón:
+   línea fina roja, insetada del borde, tamaño
+   completo de la diapo (no del contenido).
+
+   Va sobre la capa .backgrounds (elementos del
+   tamaño exacto de cada slide, detrás del
+   contenido); en export PDF reveal oculta esa
+   capa, así que hay regla paralela sobre
+   .pdf-page. Los .stack (contenedores de slides
+   verticales) no llevan marco propio.
+   ========================================== */
+
+.reveal > .backgrounds .slide-background:not(.stack)::after,
+html.reveal-print .reveal .slides .pdf-page::after {
+  content: '';
+  position: absolute;
+  /* Proporciones de la tapa: inset ~2.7%; línea afinada a pedido
+     (la tapa tiene ~0.42% del ancho, usamos 0.3vw para pantalla) */
+  inset: 2.7vw;
+  border: 0.3vw solid var(--sumo-red);
+  pointer-events: none;
+}
+
+/* Recorte del marco en la esquina inferior derecha, como la tapa
+   (los elementos rompen el marco). Ahí viven las flechas de reveal,
+   que son de tamaño fijo en px (no escalan con la deck): el parche
+   va en px sobre el color de fondo y borra las líneas de la esquina.
+   z-index 1 para pintar por encima de la línea (::after). */
+.reveal > .backgrounds .slide-background:not(.stack)::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 180px;
+  height: 130px;
+  background: var(--r-background-color);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================
+   TÍTULOS COMO LA TAPA — rojo, italic, espaciados
+   Dos posiciones, como en la tapa del disco:
+   · H1 → franja inferior, donde corre "AFTER·CHABON".
+   · H2 y H3 → esquina superior derecha, donde va
+     la palabra "SUMO".
+   Los títulos son absolute (fuera de flujo) y las
+   sections hoja se estiran al alto completo del
+   slide (flex) para anclarlos sin mover el
+   contenido, que queda centrado.
+   ========================================== */
+
+.reveal .slides > section:not(.stack),
+.reveal .slides > section > section {
+  height: 100%;
+  box-sizing: border-box;
+  /* SIN padding-top global: el contenido se centra en la diapo
+     completa, como antes del título de rincón. La franja del
+     título (3.5vw + 2 líneas a 1.1em ≈ 141px) la respetan casi
+     todas las diapos por centrado natural; las pocas cuyo
+     contenido es tan alto que subiría a pisarla llevan su
+     propia reserva vía <!-- .slide: style="padding-top: …" -->
+     (ver track 09+10). NO volver a poner padding-top acá:
+     baja el centro visual de TODAS las diapos ~10%. */
+}
+
+/* reveal.js pone display:block INLINE en la section visible (.present);
+   hace falta !important para que el contenido centre en flex.
+   Scope a .present únicamente: en .past/.future el display:none inline
+   de reveal es lo que mantiene ocultas las demás slides. */
+.reveal .slides > section.present:not(.stack),
+.reveal .slides > section > section.present {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: safe center;
+}
+
+/* Embeds (iframes) centrados horizontalmente dentro de la slide */
+.reveal .slides section iframe {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Tratamiento de tapa común a los tres niveles */
+.reveal .slides section > h1:first-of-type,
+.reveal .slides section > h2:first-of-type,
+.reveal .slides section > h3:first-of-type {
+  position: absolute;
+  margin: 0;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--sumo-red);
+}
+
+/* H1 — franja inferior, como "AFTER·CHABON" (sin cambios) */
+.reveal .slides section > h1:first-of-type {
+  bottom: 3.5vw;
+  left: 0;
+  right: 0;
+  padding-left: 4.8vw;
+  text-align: left;
+  font-size: 2em;
+}
+
+/* H2 y H3 — esquina superior derecha, como la palabra "SUMO".
+   Cuerpo acotado y columna estrecha: en la tapa, SUMO es una
+   marca chica en el rincón, no un banner. Con 1.1em,
+   line-height 1.15 y max-width 62% la letra más larga ("No sé
+   lo que quiero, pero lo quiero ya") entra en 2 líneas dentro
+   de la franja reservada por el padding-top de la section. */
+.reveal .slides section > h2:first-of-type,
+.reveal .slides section > h3:first-of-type {
+  top: 3.5vw;
+  right: 0;
+  bottom: auto;
+  left: auto;
+  padding-right: 4.8vw;
+  text-align: right;
+  max-width: 62%;
+  line-height: 1.15;
+}
+
+.reveal .slides section > h2:first-of-type { font-size: 1.1em; }
+
+/* Opt-out por diapo: las demasiado densas para convivir con el
+   título de rincón (track 06, tabla) recuperan el título en la
+   franja inferior, como la tapa del disco. Se pide con
+   <!-- .slide: class="titulo-abajo" -->. */
+.reveal .slides section.titulo-abajo > h1:first-of-type,
+.reveal .slides section.titulo-abajo > h2:first-of-type,
+.reveal .slides section.titulo-abajo > h3:first-of-type {
+  top: auto;
+  bottom: 3.5vw;
+  left: 0;
+  right: 0;
+  padding-left: 4.8vw;
+  padding-right: 0;
+  text-align: left;
+  max-width: none;
+  font-size: 1.6em;
+}
+.reveal .slides section > h3:first-of-type { font-size: 0.95em; }
+
+/* Subtítulos internos (h4+) vuelven a mono, sin tratamiento de tapa */
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: var(--r-code-font);
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+/* Acento rojo Sumo (títulos destacados, labels) */
+.reveal .sumo-red {
+  color: var(--sumo-red);
+}
+
+.reveal .text-mono {
+  font-family: var(--r-code-font);
+}
+
+.reveal .text-muted {
+  color: var(--color-muted);
+}
+
+.reveal .text-upper {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Buttons/CTAs */
+.reveal .btn {
+  display: inline-block;
+  font-family: var(--r-code-font);
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.8em 1.5em;
+  border: 2px solid var(--color-border);
+  background: var(--r-background-color);
+  color: var(--r-main-color);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.reveal .btn:hover {
+  background: var(--r-main-color);
+  color: var(--r-background-color);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--color-border);
+}
+
+/* Highlight box */
+.reveal .highlight-box {
+  background: var(--color-grey);
+  border-left: 4px solid var(--sumo-red);
+  padding: 1em;
+  margin: 1em 0;
+}
+
+/* ==========================================
+   FRAGMENT STYLES
+   ========================================== */
+
+.reveal .fragment {
+  transition: all var(--transition-base);
+}
+
+/* ==========================================
+   PROGRESS BAR
+   ========================================== */
+
+.reveal .progress {
+  background: var(--color-grey);
+  color: var(--r-main-color);
+  height: 3px;
+}
+
+.reveal .progress span {
+  background: var(--sumo-red);
+}
+
+/* ==========================================
+   CONTROLS
+   ========================================== */
+
+.reveal .controls {
+  color: var(--sumo-red);
+}
+
+/* ==========================================
+   SLIDE NUMBER
+   ========================================== */
+
+.reveal .slide-number {
+  font-family: var(--r-code-font);
+  font-size: 0.6em;
+  color: var(--r-main-color);
+  background-color: transparent;
+}
+
+/* ==========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================== */
+
+@media screen and (max-width: 768px) {
+  .reveal {
+    font-size: 28px;
+  }
+
+  .reveal h1 {
+    font-size: 2em;
+  }
+
+  .reveal h2 {
+    font-size: 1.5em;
+  }
+
+  .reveal pre {
+    font-size: 0.45em;
+  }
+}
+
+/* ==========================================
+   DARK/LIGHT THEME TOGGLE
+   ========================================== */
+
+/* Esquina inferior izquierda: la superior derecha ahora la ocupa
+   el título (H2/H3 como "SUMO" en la tapa) y la inferior derecha
+   lleva el parche del marco donde viven las flechas de reveal. */
+.theme-toggle {
+  position: fixed;
+  bottom: calc(2.7vw + 12px);
+  left: calc(2.7vw + 12px);
+  z-index: 100;
+  padding: 0.5em 1em;
+  background: var(--r-background-color);
+  border: 2px solid var(--color-border);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--r-code-font);
+  font-size: 0.8em;
+  color: var(--sumo-red);
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  background: var(--r-main-color);
+  color: var(--r-background-color);
+  transform: rotate(180deg);
+}
+
+.theme-toggle svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+/* ==========================================
+   THEME-DEPENDENT LOGOS
+   ========================================== */
+
+/* Light theme: show normal logo, hide inverted */
+.reveal .light-theme-logo {
+  display: block !important;
+}
+
+.reveal .dark-theme-logo {
+  display: none !important;
+}
+
+/* Dark theme: hide normal logo, show inverted */
+[data-theme="dark"] .reveal .light-theme-logo {
+  display: none !important;
+}
+
+[data-theme="dark"] .reveal .dark-theme-logo {
+  display: block !important;
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  .reveal .progress,
+  .reveal .controls,
+  .theme-toggle {
+    display: none !important;
+  }
+}

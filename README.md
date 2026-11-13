@@ -2,6 +2,8 @@
 
 Diapositivas online de [akielbowicz/presentations](http://charlas.saxa.xyz)
 
+[After Chatbon (PyDay Hurlingham 2026)](./slides/pyday_hurlingham_2026/slides.html)
+
 [Software científico e IA: cómo usar LLMs sin romper todo (PyDay La Plata 2026)](./slides/pyday_laplata_2026/slides.html)
 
 [IA en tu profesión — E1 Fundamentos (Biblioteca Popular de Suipacha 2026)](./slides/ia_en_tu_profesion_e1_2026/index.html)
